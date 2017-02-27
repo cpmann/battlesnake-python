@@ -2,6 +2,11 @@ import bottle
 import os
 import random
 
+my_name = "elttab ekans"
+color = "#234864"
+taunt = "Get some!"
+
+
 
 @bottle.route('/static/<path:path>')
 def static(path):
@@ -24,22 +29,62 @@ def start():
 
     return {
         'color': '#00FF00',
-        'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
+        'taunt': taunt,
         'head_url': head_url,
-        'name': 'battlesnake-python'
+        'name': my_name
     }
 
 
 @bottle.post('/move')
 def move():
+    #Get request data
     data = bottle.request.json
-
-    # TODO: Do things with data
-    directions = ['up', 'down', 'left', 'right']
-
+    my_id = data['you']
+    snakes = data['snakes']
+    turn = data['turn']
+    health = data['health']
+    food = data['food']
+    
+    #Get our snake
+    for snake in snakes:
+    	    if snake.id == my_id:
+    	    	my_snake = snake
+    	    	
+    #Head coordinates and coordinates of adjacent spaces
+    my_head = my_snake[0]
+    adjacent = {}
+    adjacent['up'] = [my_head[0], my_head[1]-1]
+    adjacent['down'] = [my_head[0], my_head[1]+1]
+    adjacent['left'] = [my_head[0]-1, my_head[1]]
+    adjacent['right'] = [my_head[0]+1, my_head[1]]
+    adjacent['backwards'] = my_snake[1]
+    
+    #Determine which directions are clear to move
+    viable_move = {}
+    for key, value in adjacent.items():
+    	    viable_flag = true
+    	    if key != 'backwards':
+    	    	    if value != adjacent['backwards']:
+    	    	    	    for snake in snakes:
+    	    	    	    	    if viable_flag == false:
+    	    	    	    	    	    break
+    	    	    	    	    if snake.id != my_id:
+    	    	    	    	    	    for point in snake.coords:
+    	    	    	    	    	    	    if point == value:
+    	    	    	    	    	    	    	    viable_flag = false
+    	    	    	    	    	    	    	    break
+    	    elif key == backwards:
+    	    	    viable_flag = false
+    	    if viable_flag == true:	    	    	    	    	    	    
+    	    	    viable_move[key] = value
+    #TODO: Implement Snake behavioural AI
+    
+    #pick and send move
+    directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
+    #move = direction['thedirection']
     return {
-        'move': random.choice(directions),
-        'taunt': 'battlesnake-python!'
+        'move': move,
+        'taunt': taunt
     }
 
 
