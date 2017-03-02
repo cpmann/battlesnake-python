@@ -57,26 +57,24 @@ def move():
     adjacent['down'] = [my_head[0], my_head[1]+1]
     adjacent['left'] = [my_head[0]-1, my_head[1]]
     adjacent['right'] = [my_head[0]+1, my_head[1]]
-    adjacent['backwards'] = my_snake[1]
     
     #Determine which directions are clear to move
     viable_move = {}
-    for key, value in adjacent.items():
+    for direction, coord in adjacent.items():
     	    viable_flag = true
-    	    if key != 'backwards':
-    	    	    if value != adjacent['backwards']:
-    	    	    	    for snake in snakes:
-    	    	    	    	    if viable_flag == false:
-    	    	    	    	    	    break
-    	    	    	    	    if snake.id != my_id:
-    	    	    	    	    	    for point in snake.coords:
-    	    	    	    	    	    	    if point == value:
-    	    	    	    	    	    	    	    viable_flag = false
-    	    	    	    	    	    	    	    break
-    	    elif key == backwards:
+    	    if coord[0] < 0 or coord[0] >= board_width: #if X coord is a wall value don't include direction
     	    	    viable_flag = false
-    	    if viable_flag == true:	    	    	    	    	    	    
-    	    	    viable_move[key] = value
+	    elif coord[1] < 0 or coord[1] >= board_height: #if Y coord is a wall value don't include direction
+		    viable_flag = false
+	    for snake in snakes:
+		    if viable_flag == false: #if coord == a point in previous snake then break
+			    break
+		    for point in snake.coords: #compare coord to all body points of snake
+			    if point == coord: #if this point in snake == coord then don't include direction and break
+				    viable_flag = false
+				    break
+	    if viable_flag == true: #if viable flag is still true then add direction to possible moves	    	    	    	    	    	    
+    	    	    viable_move[direction] = coord
     #TODO: Implement Snake behavioural AI
     
     #pick and send move
