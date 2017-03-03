@@ -15,6 +15,8 @@ def static(path):
 
 @bottle.post('/start')
 def start():
+    global board_width
+    global board_height
     data = bottle.request.json
     game_id = data['game_id']
     board_width = data['width']
@@ -61,25 +63,25 @@ def move():
     #Determine which directions are clear to move
     viable_move = {}
     for direction, coord in adjacent.items():
-    	    viable_flag = true
+    	    viable_flag = True
     	    if coord[0] < 0 or coord[0] >= board_width: #if X coord is a wall value don't include direction
-    	    	    viable_flag = false
+    	    	    viable_flag = False
 	    elif coord[1] < 0 or coord[1] >= board_height: #if Y coord is a wall value don't include direction
-		    viable_flag = false
+		    viable_flag = False
 	    for snake in snakes:
-		    if viable_flag == false: #if coord == a point in previous snake then break
+		    if viable_flag == False: #if coord == a point in previous snake then break
 			    break
 		    for point in snake.coords: #compare coord to all body points of snake
 			    if point == coord: #if this point in snake == coord then don't include direction and break
-				    viable_flag = false
+				    viable_flag = False
 				    break
-	    if viable_flag == true: #if viable flag is still true then add direction to possible moves	    	    	    	    	    	    
+	    if viable_flag == True: #if viable flag is still true then add direction to possible moves	    	    	    	    	    	    
     	    	    viable_move[direction] = coord
     #TODO: Implement Snake behavioural AI
     
     #pick and send move
     directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
-    #move = direction['thedirection']
+    move = random.choice(directions)
     return {
         'move': move,
         'taunt': taunt
