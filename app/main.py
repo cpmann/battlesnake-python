@@ -1,6 +1,7 @@
 import bottle
 import os
 import random
+import math
 
 my_name = "elttab ekans"
 color = "#234864"
@@ -77,11 +78,21 @@ def move():
 				    break
 	    if viable_flag == True: #if viable flag is still true then add direction to possible moves	    	    	    	    	    	    
     	    	    viable_move[direction] = coord
-    #TODO: Implement Snake behavioural AI
-    
-    #pick and send move
-    directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
-    move = random.choice(directions)
+    if health < 50: #go get apple
+        if len(food) > 0:
+            distance = []
+            for i in range(len(food)):
+                distance[i] = math.fabs(food[i][0] - my_head[0]) + math.fabs(food[i][1] - my_head[1])
+            target = distance[0]
+            for dist in distance:
+                if target > dist:
+                    target = dist
+        
+    else: #keep doing other stuff #TODO: Implement Snake behavioural AI
+        
+        #pick and send move
+        directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
+        move = viable_move.keys()[0]
     return {
         'move': move,
         'taunt': taunt
