@@ -81,7 +81,7 @@ def move():
 				    break
 	    if viable_flag == True: #if viable flag is still true then add direction to possible moves	    	    	    	    	    	    
     	    	    viable_move[direction] = coord
-    if health < 50: #go get apple
+    if health < 100: #go get apple
         if len(food) > 0:
             distance = []
             target = []
