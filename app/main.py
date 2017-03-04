@@ -68,9 +68,9 @@ def move():
     viable_move = {}
     for direction, coord in adjacent.items():
     	    viable_flag = True
-    	    if coord[0] < 0 or coord[0] >= board_width: #if X coord is a wall value don't include direction
+    	    if coord[0] < 0 or coord[0] > board_width - 1: #if X coord is a wall value don't include direction
     	    	    viable_flag = False
-	    elif coord[1] < 0 or coord[1] >= board_height: #if Y coord is a wall value don't include direction
+	    elif coord[1] < 0 or coord[1] > board_height - 1: #if Y coord is a wall value don't include direction
 		    viable_flag = False
 	    for snake in snakes:
 		    if viable_flag == False: #if coord == a point in previous snake then break
