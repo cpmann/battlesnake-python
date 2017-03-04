@@ -49,7 +49,7 @@ def move():
     
     #Get our snake
     for snake in snakes:
-    	    if snake[id] == my_id:
+    	    if snake['id'] == my_id:
     	    	my_snake = snake
     	    	health = snake.health_points
     #Head coordinates and coordinates of adjacent spaces
