@@ -99,7 +99,7 @@ def move():
         
         #pick and send move
         directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
-        move = viable_move.keys()[0]
+        move = random.choice(viable_move.keys())
     return {
         'move': move,
         'taunt': taunt
