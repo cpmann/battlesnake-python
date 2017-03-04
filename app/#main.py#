@@ -91,9 +91,7 @@ def move():
             		target = food[i]
             	elif dictance[i] < distance[i-1]:
             		target = food[i]
-            for dist in distance:
-                if target > dist:
-                    target = dist
+            
         
     else: #keep doing other stuff #TODO: Implement Snake behavioural AI
         
