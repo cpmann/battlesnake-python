@@ -51,9 +51,9 @@ def move():
     for snake in snakes:
     	    if snake['id'] == my_id:
     	    	my_snake = snake
-    	    	health = snake.health_points
+    	    	health = snake['health_points']
     #Head coordinates and coordinates of adjacent spaces
-    my_head = my_snake[0]
+    my_head = my_snake['coords'][0]
     
     adjacent = {}
     adjacent['up'] = [my_head[0], my_head[1]-1]
@@ -72,7 +72,7 @@ def move():
 	    for snake in snakes:
 		    if viable_flag == False: #if coord == a point in previous snake then break
 			    break
-		    for point in snake.coords: #compare coord to all body points of snake
+		    for point in snake['coords']: #compare coord to all body points of snake
 			    if point == coord: #if this point in snake == coord then don't include direction and break
 				    viable_flag = False
 				    break
