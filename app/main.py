@@ -89,7 +89,7 @@ def move():
                 distance[i] = math.fabs(food[i][0] - my_head[0]) + math.fabs(food[i][1] - my_head[1])
             	if i == 0:
             		target = food[i]
-            	elif dictance[i] < distance[i-1]:
+            	elif distance[i] < distance[i-1]:
             		target = food[i]
             for dist in distance:
                 if target > dist:
