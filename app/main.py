@@ -40,6 +40,8 @@ def start():
 
 @bottle.post('/move')
 def move():
+    global board_width
+    global board_height
     #Get request data
     data = bottle.request.json
     my_id = data['you']
