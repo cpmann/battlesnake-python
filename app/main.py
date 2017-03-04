@@ -95,19 +95,19 @@ def move():
                 if target > dist:
                     target = dist
         if (my_head[0] > target[0]):    # If the food is to the left of the head
-            if 'left' in viable_move:
+            if 'left' in viable_move.values():
                 # Clear other viable moves
                 viable_move = 'left' 
         elif (my_head[0] < target[0]):  # If the food is to the right of the head
-            if 'right' in viable_move:
+            if 'right' in viable_move.values():
                 # Clear other viable moves
                 viable_move = 'right'
         elif (my_head[1] > target[1]):  # If the food is above the head
-            if 'up' in viable_move:
+            if 'up' in viable_move.values():
                 # Clear other viable moves
                 viable_move = 'up'
         else:                           # If the food is below the head
-            if 'down' in viable_move:
+            if 'down' in viable_move.values():
                 # Clear other viable moves
                 viable_move = 'down'
         
