@@ -123,7 +123,8 @@ def move():
                         break
                     else:
                         kill_flag = False
-            break
+
+
 
 
         #pick and send move
@@ -133,6 +134,7 @@ def move():
              move = saveDir
         else:
             move = random.choice(viable_move.key())
+
     return {
         'move': move,
         'taunt': taunt
