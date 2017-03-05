@@ -81,7 +81,7 @@ def move():
 				    break
 	    if viable_flag == True: #if viable flag is still true then add direction to possible moves	    	    	    	    	    	    
     	    	    viable_move[direction] = coord
-    if health < 100: #go get apple
+    if health < 50: #go get apple
         if len(food) > 0:
             distance = []
             target = []
@@ -112,27 +112,10 @@ def move():
                 viable_move = 'down'
         
     else: #keep doing other stuff #TODO: Implement Snake behavioural AI
-
-        for snake in snakes:
-            for dir,coord in adjacent.items():
-                if snake['coords'] == coord:
-                    if len(my_snake['coord']) > len(snake['coord']):
-                        kill_flag = True
-                        saveDir = dir
-                        taunt = 'kill flag'
-                        break
-                    else:
-                        kill_flag = False
-            break
-
-
+        
         #pick and send move
         directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
-        if kill_flag == True:
-            if saveDir in viable_move:
-             move = saveDir
-        else:
-            move = random.choice(viable_move.key())
+        move = viable_move.keys()[0]
     return {
         'move': move,
         'taunt': taunt
