@@ -129,8 +129,8 @@ def move():
 
         #pick and send move
         directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
-        if kill_flag == True:
-            if saveDir in viable_move:
+    if kill_flag == True:
+        if saveDir in viable_move:
              move = saveDir
         else:
             move = random.choice(viable_move.key())
