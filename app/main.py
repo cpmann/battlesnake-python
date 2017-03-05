@@ -113,16 +113,16 @@ def move():
         
     else: #keep doing other stuff #TODO: Implement Snake behavioural AI
 
-        for snake in snakes:
-            for dir,coord in adjacent.items():
-                if snake['coords'] == coord:
-                    if len(my_snake['coord']) > len(snake['coord']):
-                        kill_flag = True
-                        saveDir = dir
-                        taunt = 'kill flag'
-                        break
-                    else:
-                        kill_flag = False
+            for snake in snakes:
+                for dir,coord in adjacent.items():
+                    if snake['coords'] == coord:
+                        if len(my_snake['coord']) > len(snake['coord']):
+                            kill_flag = True
+                            saveDir = dir
+                            taunt = 'kill flag'
+                            break
+                        else:
+                            kill_flag = False
 
 
 
