@@ -48,8 +48,8 @@ def move():
     snakes = data['snakes']
     turn = data['turn']
     food = data['food']
-    board_width = ['width']
-    board_height = ['height']
+    board_width = data['width']
+    board_height = data['height']
     #Get our snake
     for snake in snakes:
     	    if snake['id'] == my_id:
@@ -116,6 +116,29 @@ def move():
         #pick and send move
         directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
         move = viable_move.keys()[0]
+
+            for snake in snakes:
+                for dir,coord in adjacent.items():
+                    if snake['coords'] == coord:
+                        if len(my_snake['coord']) > len(snake['coord']):
+                            kill_flag = True
+                            saveDir = dir
+                            taunt = 'kill flag'
+                            break
+                        else:
+                            kill_flag = False
+
+
+
+
+        #pick and send move
+        directions = {'up': 'up', 'down':'down', 'left':'left', 'right':'right'}
+    if kill_flag == True:
+        if saveDir in viable_move:
+             move = saveDir
+        else:
+            move = random.choice(viable_move.key())
+
     return {
         'move': move,
         'taunt': taunt
